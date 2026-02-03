@@ -90,3 +90,4 @@ kubectl apply -f kubernetes/dynamic-nfs-storageclass.yaml
 * **"Permission denied" on build/run:** Ensure you are using `sudo` for `podman run`.
 * **"Unsupported version":** SLES 16 (ALP) has removed NFSv2. This image is configured for v3/v4 only.
 * **Mount errors:** Ensure `securityContext.privileged: true` is set in your Kubernetes deployment.
+

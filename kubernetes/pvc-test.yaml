@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: test-dynamic-claim
+spec:
+  accessModes:
+    - ReadWriteMany  # The superpower of NFS
+  storageClassName: nfs-server-bci-csi
+  resources:
+    requests:
+      storage: 5Gi

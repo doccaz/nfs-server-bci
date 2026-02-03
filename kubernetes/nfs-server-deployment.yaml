@@ -1,0 +1,50 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nfs-server-bci
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nfs-server-bci
+  template:
+    metadata:
+      labels:
+        app: nfs-server-bci
+    spec:
+      # Pin to the specific Harvester node where storage exists
+      nodeSelector:
+        kubernetes.io/hostname: "harvester-node-1" 
+      
+      containers:
+      - name: nfs-server
+        image: ghcr.io/doccaz/nfs-server-bci:latest
+        imagePullPolicy: Always
+        
+        securityContext:
+          privileged: true  # Required for kernel nfsd interaction
+          runAsUser: 0      # Ensure we run as root
+
+        env:
+        - name: SHARED_DIRECTORY
+          value: "/data"
+        # Optional: Restrict to a specific subnet (e.g., your K8s Pod CIDR)
+        - name: ALLOWED_CLIENTS
+          value: "*" 
+
+        ports:
+        - name: nfs
+          containerPort: 2049
+          hostPort: 2049     # Expose 2049 directly on the Harvester Node IP
+
+        volumeMounts:
+        - mountPath: /data
+          name: host-storage
+      
+      volumes:
+      - name: host-storage
+        hostPath:
+          # The physical path on the Harvester node
+          path: /var/lib/harvester/default/storage
+          type: DirectoryOrCreate

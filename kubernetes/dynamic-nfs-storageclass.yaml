@@ -6,7 +6,7 @@ provisioner: nfs.csi.k8s.io
 parameters:
   # IP of the Harvester Node running your NFS Pod
   server: 192.168.1.50 
-  share: /data
+  share: /
   # Create a subfolder for every PVC automatically
   subDir: ${pvc.metadata.namespace}/${pvc.metadata.name}
   mountPermissions: "0777"

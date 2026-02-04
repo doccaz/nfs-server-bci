@@ -1,7 +1,7 @@
 apiVersion: storage.k8s.io/v1
 kind: StorageClass
 metadata:
-  name: harvester-nfs-csi
+  name: nfs-server-bci-csi
 provisioner: nfs.csi.k8s.io
 parameters:
   # IP of the Harvester Node running your NFS Pod

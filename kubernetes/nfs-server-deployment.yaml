@@ -13,41 +13,44 @@ spec:
       labels:
         app: nfs-server-bci
     spec:
-      # Pin to the specific Harvester node where storage exists
+      # Pins to the node
       nodeSelector:
-        kubernetes.io/hostname: "harv01lab" 
-      
+        kubernetes.io/hostname: "harv01lab" # Update to your real node name
+
+      # --- ENABLE HOST NETWORKING ---
+      # This bypasses CNI/NAT. The pod shares the host's IP and ports directly.
+      hostNetwork: true
+      # Required when using hostNetwork so the pod can resolve cluster DNS
+      dnsPolicy: ClusterFirstWithHostNet
+      # ------------------------------
+
       containers:
       - name: nfs-server
-        image: ghcr.io/doccaz/nfs-server-bci:latest
+        image: ghcr.io/doccaz/nfs-server-bci:latest # Ensure this pulls your new build
         imagePullPolicy: Always
-        
         securityContext:
-          privileged: true  # Required for kernel nfsd interaction
-          runAsUser: 0      # Ensure we run as root
-
+          privileged: true
+          runAsUser: 0
         env:
         - name: SHARED_DIRECTORY
           value: "/data"
-        # Optional: Restrict to a specific subnet (e.g., your K8s Pod CIDR)
-        - name: ALLOWED_CLIENTS
-          value: "*" 
         - name: NODE_IP
           valueFrom:
             fieldRef:
               fieldPath: status.hostIP
+        
+        # Ports section is now just for documentation, as we are on host network
         ports:
         - name: nfs
           containerPort: 2049
-          hostPort: 2049     # Expose 2049 directly on the Harvester Node IP
+          # hostPort is removed because hostNetwork: true implies it automatically
 
         volumeMounts:
         - mountPath: /data
           name: host-storage
-      
+
       volumes:
       - name: host-storage
         hostPath:
-          # The physical path on the Harvester node
           path: /var/lib/harvester/defaultdisk/nfs-share
-          type: DirectoryOrCreate
+          type: Directory

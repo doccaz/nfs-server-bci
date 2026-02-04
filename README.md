@@ -70,7 +70,7 @@ sudo podman run --rm -it \
 kubectl apply -f kubernetes/nfs-server-deployment.yaml
 
 ```
-
+**⚠️ Important:** Remember to create the directory at /var/lib/harvester/defaultdisk/nfs-share MANUALLY! The default SELinux policy in RKE2 won't allow DirectoryOrCreate to succeed from the container!
 
 
 ### 4. Connect External Cluster

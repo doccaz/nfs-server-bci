@@ -36,6 +36,8 @@ flowchart LR
     PVC -- "Binds" --> AppPod
 
 ```
+If you can't see the interactive rendered graph above, here's it in SVG form:
+![Architecture SVG](nfs-bci-csi-architecture.svg)
 
 ## ⚙️ Configuration Options
 

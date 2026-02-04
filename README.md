@@ -6,12 +6,18 @@ It is designed to deploy a persistent NFS server on immutable infrastructure lik
 
 You will get a storage provider for ReadWriteMany PVCs with Volume Expansion using the main server disk on a Harvester node without needing to install anything on the system itself (not that can do that so easily since it's a read-only system...)
 
+## ❓But... why?
+
+I needed a ReadWriteMany storage provider for some tests in my lab, and didn't want to map the NFS off of my NAS, which is veeery slow as it's on the other side of the network. So, why not use that juicy disk space already allocated to one of very fast disks on the Harvester hosts? 
+
+It might be completely unsupported in a production environment, so please be careful when using this, okay? 😼
+
 ## 🏗 Architecture
 
 ```mermaid
 flowchart LR
     subgraph "Harvester Node"
-        HostPath[("/var/lib/harvester/default/storage")]
+        HostPath[("/var/lib/harvester/defaultdisk/nfs-share/")]
         NFS_Pod["NFS Server Pod (Privileged)"]
         HostPath --- NFS_Pod
     end
@@ -35,7 +41,7 @@ flowchart LR
 
 | Env Variable | Default | Description |
 | --- | --- | --- |
-| `SHARED_DIRECTORY` | `/data` | The internal path to export. |
+| `SHARED_DIRECTORY` | `/` | The internal path to export. |
 | `ALLOWED_CLIENTS` | `*` | IP or Subnet allowed to connect (e.g., `10.42.0.0/16`). |
 
 ## 🚀 Quick Start

@@ -49,5 +49,25 @@ echo "Starting nfsd..."
 echo "Starting mountd..."
 /usr/sbin/rpc.mountd --debug all --foreground &
 
+# --- OUTPUT CONFIGURATION INFO ---
+HOST_IP=${NODE_IP:-"detecting..."}
+
+# If NODE_IP wasn't passed, try to guess (fallback)
+if [ "$HOST_IP" = "detecting..." ]; then
+    HOST_IP=$(hostname -I | awk '{print $1}')
+fi
+
+echo ""
+echo "=================================================================="
+echo "✅ NFS Server is Ready!"
+echo "Use the following settings for your StorageClass parameters:"
+echo "=================================================================="
+echo "parameters:"
+echo "  server: $HOST_IP"
+echo "  share:  $SHARED_DIRECTORY"
+echo "  subDir: \${pvc.metadata.namespace}/\${pvc.metadata.name}  # Recommended"
+echo "=================================================================="
+echo ""
+
 # Wait for the background process to finish (allows signal trapping)
 wait $!

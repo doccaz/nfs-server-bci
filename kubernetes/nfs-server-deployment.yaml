@@ -15,7 +15,7 @@ spec:
     spec:
       # Pin to the specific Harvester node where storage exists
       nodeSelector:
-        kubernetes.io/hostname: "harvester-node-1" 
+        kubernetes.io/hostname: "harv01lab" 
       
       containers:
       - name: nfs-server
@@ -32,7 +32,10 @@ spec:
         # Optional: Restrict to a specific subnet (e.g., your K8s Pod CIDR)
         - name: ALLOWED_CLIENTS
           value: "*" 
-
+        - name: NODE_IP
+          valueFrom:
+            fieldRef:
+              fieldPath: status.hostIP
         ports:
         - name: nfs
           containerPort: 2049
@@ -46,5 +49,5 @@ spec:
       - name: host-storage
         hostPath:
           # The physical path on the Harvester node
-          path: /var/lib/harvester/default/storage
+          path: /var/lib/harvester/defaultdisk/nfs-share
           type: DirectoryOrCreate

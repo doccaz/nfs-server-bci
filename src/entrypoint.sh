@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-SHARED_DIRECTORY="${SHARED_DIRECTORY:-/data}"
+SHARED_DIRECTORY="${SHARED_DIRECTORY:-/}"
 # Default to allow everyone if not specified
 ALLOWED_CLIENTS="${ALLOWED_CLIENTS:-*}"
 

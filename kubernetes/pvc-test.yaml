@@ -2,7 +2,7 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: test-dynamic-claim
-  namespace:
+  namespace: default
 spec:
   accessModes:
     - ReadWriteMany  # The superpower of NFS

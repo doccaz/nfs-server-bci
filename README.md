@@ -4,6 +4,8 @@ This project provides a containerized NFS Server built on **SUSE Linux Enterpris
 
 It is designed to deploy a persistent NFS server on immutable infrastructure like **Harvester** or **SLE Micro**, allowing you to serve local host storage to external Kubernetes clusters via the **NFS CSI Driver**.
 
+You will get a storage provider for ReadWriteMany PVCs with Volume Expansion using the main server disk on a Harvester node without needing to install anything on the system itself (not that can do that so easily since it's a read-only system...)
+
 ## 🏗 Architecture
 
 ```mermaid

@@ -32,7 +32,7 @@ mkdir -p "$SHARED_DIRECTORY"
 echo "Configuring exports for clients: $ALLOWED_CLIENTS"
 # Format: /path  client(options)
 # fsid=0 allows mounting the root at /
-echo "$SHARED_DIRECTORY $ALLOWED_CLIENTS(rw,fsid=1,no_subtree_check,no_root_squash,insecure,sync)" > /etc/exports
+echo "$SHARED_DIRECTORY $ALLOWED_CLIENTS(rw,fsid=0,no_subtree_check,no_root_squash,insecure,sync)" > /etc/exports
 
 mkdir -p /run/rpc_pipefs /var/lib/nfs/rpc_pipefs /var/lib/nfs/v4recovery
 

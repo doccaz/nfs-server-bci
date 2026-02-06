@@ -2,7 +2,7 @@ apiVersion: v2
 name: nfs-server-bci
 description: A lightweight, containerized NFS server for Harvester/SLE Micro using SLE BCI.
 type: application
-version: 1.0.0
+version: 1.0.1
 appVersion: "16.0"
 maintainers:
   - name: Erico Mendonca (erico.mendonca@suse.com)

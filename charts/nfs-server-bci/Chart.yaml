@@ -1,8 +1,29 @@
 apiVersion: v2
 name: nfs-server-bci
 description: A lightweight, containerized NFS server for Harvester/SLE Micro using SLE BCI.
+icon: https://raw.githubusercontent.com/doccaz/nfs-server-bci/main/nfs-icon.png
+home: https://github.com/doccaz/nfs-server-bci
+sources:
+  - https://github.com/doccaz/nfs-server-bci
+  - https://github.com/doccaz/nfs-server-bci/tree/main/src
 type: application
 version: 1.0.5
 appVersion: "16.0-20260206"
+keywords:
+  - nfs
+  - harvester
+  - storage
+  - csi
+  - suse
+  
 maintainers:
-  - name: Erico Mendonca (erico.mendonca@suse.com)
+  - name: Erico Mendonca
+    email: erico.mendonca@suse.com
+    url: https://github.com/doccaz
+
+annotations:
+  artifacthub.io/license: GPL-3.0-only
+  artifacthub.io/images: |
+    - name: architecture
+      url: https://raw.githubusercontent.com/doccaz/nfs-server-bci/main/nfs-bci-csi-architecture.svg
+  artifacthub.io/readme: "README.md"

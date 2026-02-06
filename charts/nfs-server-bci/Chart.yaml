@@ -7,7 +7,7 @@ sources:
   - https://github.com/doccaz/nfs-server-bci
   - https://github.com/doccaz/nfs-server-bci/tree/main/src
 type: application
-version: 1.0.6
+version: 1.0.7
 appVersion: "16.0-20260206"
 keywords:
   - nfs

@@ -2,6 +2,19 @@ apiVersion: v1
 entries:
   nfs-server-bci:
   - apiVersion: v2
+    appVersion: 16.0-20260206
+    created: "2026-02-06T17:11:05.526955952Z"
+    description: A lightweight, containerized NFS server for Harvester/SLE Micro using
+      SLE BCI.
+    digest: 9229ec4d948e93b7f862f634f2a2de17d166da461128d3369b8a5653c96d3a7c
+    maintainers:
+    - name: Erico Mendonca (erico.mendonca@suse.com)
+    name: nfs-server-bci
+    type: application
+    urls:
+    - https://github.com/doccaz/nfs-server-bci/releases/download/nfs-server-bci-1.0.5/nfs-server-bci-1.0.5.tgz
+    version: 1.0.5
+  - apiVersion: v2
     appVersion: "16.0"
     created: "2026-02-06T17:00:48.174223096Z"
     description: A lightweight, containerized NFS server for Harvester/SLE Micro using
@@ -14,4 +27,4 @@ entries:
     urls:
     - https://github.com/doccaz/nfs-server-bci/releases/download/nfs-server-bci-1.0.1/nfs-server-bci-1.0.1.tgz
     version: 1.0.1
-generated: "2026-02-06T17:00:48.174235269Z"
+generated: "2026-02-06T17:11:05.526972543Z"
